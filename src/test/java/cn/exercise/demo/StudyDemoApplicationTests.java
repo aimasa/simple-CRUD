@@ -7,7 +7,7 @@ import org.springframework.mock.web.MockServletContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import cn.example.demo.StudyDemoApplication;
+import cn.exercise.demo.StudyDemoApplication;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = StudyDemoApplication.class)

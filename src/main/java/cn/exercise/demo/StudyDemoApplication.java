@@ -1,4 +1,4 @@
-package cn.example.demo;
+package cn.exercise.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

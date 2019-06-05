@@ -1,32 +1,29 @@
 package cn.exercise.demo.pojo.vo;
 
+import cn.exercise.demo.pojo.vo.resp.VoGetUserInfoResp;
+
+/**
+ * 用户的个人信息以及不同操作对应的info
+ * @author zhy
+ *
+ */
 public class GetUserInfoResp {
-	private Integer id;
-    private String  userName;
-    private String  sex;
-	private Integer age;
-	public Integer getId() {
-		return id;
+	private String info;
+	private VoGetUserInfoResp voGetUserInfoResp;
+
+	public VoGetUserInfoResp getVoGetUserInfoResp() {
+		return voGetUserInfoResp;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+
+	public void setVoGetUserInfoResp(VoGetUserInfoResp voGetUserInfoResp) {
+		this.voGetUserInfoResp = voGetUserInfoResp;
 	}
-	public String getUserName() {
-		return userName;
+
+	public String getInfo() {
+		return info;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-	public String getSex() {
-		return sex;
-	}
-	public void setSex(String sex) {
-		this.sex = sex;
-	}
-	public Integer getAge() {
-		return age;
-	}
-	public void setAge(Integer age) {
-		this.age = age;
+
+	public void setInfo(String info) {
+		this.info = info;
 	}
 }

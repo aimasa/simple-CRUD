@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
-import cn.example.demo.StudyDemoApplication;
+import cn.exercise.demo.StudyDemoApplication;
 import cn.exercise.demo.dao.mapper.UserPersonMapper;
 import cn.exercise.demo.pojo.po.tables.pojos.UserInfo;
 

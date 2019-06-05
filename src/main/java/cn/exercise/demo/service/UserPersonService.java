@@ -3,6 +3,11 @@ package cn.exercise.demo.service;
 import cn.exercise.demo.pojo.bo.req.BoGetUserInfoReq;
 import cn.exercise.demo.pojo.bo.resp.BoGetUserInfoResp;
 
+/**
+ * 转发dao层处理好的数据
+ * @author zhy
+ *
+ */
 public interface UserPersonService {
 	
 	/**

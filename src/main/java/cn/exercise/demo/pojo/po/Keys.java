@@ -9,6 +9,7 @@ import cn.exercise.demo.pojo.po.tables.records.UserInfoRecord;
 
 import javax.annotation.Generated;
 
+import org.jooq.Identity;
 import org.jooq.UniqueKey;
 import org.jooq.impl.Internal;
 
@@ -31,6 +32,7 @@ public class Keys {
     // IDENTITY definitions
     // -------------------------------------------------------------------------
 
+    public static final Identity<UserInfoRecord, Integer> IDENTITY_USER_INFO = Identities0.IDENTITY_USER_INFO;
 
     // -------------------------------------------------------------------------
     // UNIQUE and PRIMARY KEY definitions
@@ -46,6 +48,10 @@ public class Keys {
     // -------------------------------------------------------------------------
     // [#1459] distribute members to avoid static initialisers > 64kb
     // -------------------------------------------------------------------------
+
+    private static class Identities0 {
+        public static Identity<UserInfoRecord, Integer> IDENTITY_USER_INFO = Internal.createIdentity(UserInfo.USER_INFO, UserInfo.USER_INFO.ID);
+    }
 
     private static class UniqueKeys0 {
         public static final UniqueKey<UserInfoRecord> KEY_USER_INFO_PRIMARY = Internal.createUniqueKey(UserInfo.USER_INFO, "KEY_user_info_PRIMARY", UserInfo.USER_INFO.ID);

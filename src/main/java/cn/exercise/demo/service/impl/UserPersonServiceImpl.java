@@ -1,5 +1,6 @@
 package cn.exercise.demo.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cn.exercise.demo.dao.mapper.UserPersonMapper;
@@ -17,6 +18,7 @@ import cn.exercise.demo.service.UserPersonService;
 @Service
 public class UserPersonServiceImpl implements UserPersonService {
 
+	@Autowired
 	private UserPersonMapper userPersonMapper;
 
 	@Override
@@ -38,7 +40,7 @@ public class UserPersonServiceImpl implements UserPersonService {
 	@Override
 	public BoGetUserInfoResp addUserInfo(BoGetUserInfoReq boGetUserInfoReq) {
 		return BoGetUserPersonMapper.INSTANCE.toBoGetUserInfoResp(userPersonMapper
-				.updateUserInfo(BoGetUserPersonMapper.INSTANCE.fromBoGetUserInfoResp(boGetUserInfoReq)));
+				.addUser(BoGetUserPersonMapper.INSTANCE.fromBoGetUserInfoResp(boGetUserInfoReq)));
 	}
 
 }
