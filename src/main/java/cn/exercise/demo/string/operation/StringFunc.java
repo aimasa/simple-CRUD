@@ -23,4 +23,6 @@ public class StringFunc {
 		return Integer.valueOf("1");
 
 	}
+	
+	
 }
