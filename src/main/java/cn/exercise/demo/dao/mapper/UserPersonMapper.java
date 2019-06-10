@@ -1,5 +1,6 @@
 package cn.exercise.demo.dao.mapper;
 
+
 import cn.exercise.demo.pojo.po.tables.pojos.UserInfo;
 
 public interface UserPersonMapper {
@@ -7,7 +8,7 @@ public interface UserPersonMapper {
 	/**
 	 * 增加一条用户信息
 	 * @param userInfo 用户信息（包括id:可为空，用户姓名，性别，年龄）
-	 * @return
+	 * @return 增加成功的用户信息
 	 */
    UserInfo addUser(UserInfo userInfo);
    
@@ -21,11 +22,11 @@ public interface UserPersonMapper {
    
    /**
     * 查询一条用户信息
-    * @param userInfo 
-    * @return
+    * @param id 指定需要查询的用户的id
+    * @return 该id的用户信息
     */
    
-   UserInfo getUser(String id);
+   UserInfo getUser(Integer id);
    
    
    /**
@@ -33,5 +34,5 @@ public interface UserPersonMapper {
     * @param id 需要删除用户信息的id
     * @return 删除成功返回true，没有该用户返回false
     */
-   Boolean deleUserInfo(String id);
+   Boolean deleUserInfo(Integer id);
 }

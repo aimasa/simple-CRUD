@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 import cn.exercise.demo.StudyDemoApplication;
 import cn.exercise.demo.dao.mapper.UserPersonMapper;
@@ -29,7 +29,7 @@ public class daoTest {
 	UserInfo userInfo;
 	@Autowired
 	UserPersonMapper userPersonMapper;
-    public Integer id = 10;
+    public Integer id ;
 	@Before
 	public void start() {
 		userInfo = new UserInfo();
@@ -38,29 +38,30 @@ public class daoTest {
 		userInfo.setAge(11);
 		userInfo.setSex("女");
 		userInfo.setUserName("beatiful girl");
-		userPersonMapper.addUser(userInfo);
+		UserInfo tempUserInfo = userPersonMapper.addUser(userInfo);
+		id = tempUserInfo.getId();
 		
 	}
 
 	@After
 	public void end() {
-		id = id + 1;
+//		id = id + 1;
 		System.out.println("测试结束");
 	}
 
 	@Test
 	public void addUser() {
-		userInfo.setId(24);
+//		userInfo.setId(24);
 		userInfo.setAge(11);
 		userInfo.setSex("女");
 		userInfo.setUserName("beatiful girl");
 		userPersonMapper.addUser(userInfo);
-		System.out.print("123");
+		Assert.notNull(userInfo, "插入失败");
 	}
 
 	@Test
 	public void getUser() {
-		userPersonMapper.getUser(id.toString());
+		userPersonMapper.getUser(id);
 	}
 
 	@Test
@@ -74,7 +75,7 @@ public class daoTest {
 	
 	@Test
 	public void deleUser() {
-		Boolean isSuccess = userPersonMapper.deleUserInfo(id.toString());
+		Boolean isSuccess = userPersonMapper.deleUserInfo(id);
 	    System.out.println(isSuccess);
 	}
 }

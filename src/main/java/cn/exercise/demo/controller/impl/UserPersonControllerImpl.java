@@ -21,9 +21,14 @@ import cn.exercise.demo.service.UserPersonService;
 public class UserPersonControllerImpl implements UserPersonController {
 	@Autowired
 	private UserPersonService userPersonService;
-
+	
+	/**
+	 * 获取该id的用户信息
+	 * @param id 想要的用户信息的id
+	 * @return 所有用户信息以及对应信息
+	 */
 	@GetMapping("/getuser/{id}")
-	@ResponseStatus(HttpStatus.CREATED)
+	@ResponseStatus(HttpStatus.OK)
 	@Override
 	public GetUserInfoResp getUserInfo(@PathVariable(value = "id", required = true) String id) {
 		GetUserInfoResp getUserInfoResp = new GetUserInfoResp();
@@ -32,7 +37,12 @@ public class UserPersonControllerImpl implements UserPersonController {
 				VoGetUserPersonMapper.INSTANCE.toVoUserInfoResp(userPersonService.GetUserInfo(id)));
 		return getUserInfoResp;
 	}
-
+	
+    /**
+     * 更新用户信息，返回更新完成的内容
+     * @param voGetUserInfoReq 需要更新的信息以及用户id
+     * @return 更新完成的用户信息
+     */
 	@PutMapping("/updateuser")
 	@ResponseStatus(HttpStatus.CREATED)
 	@Override
@@ -44,6 +54,11 @@ public class UserPersonControllerImpl implements UserPersonController {
 		return getUserInfoResp;
 	}
 
+	/**
+     * 添加用户的信息，返回添加成功的用户信息
+     * @param voGetUserInfoReq 添加的用户信息
+     * @return 添加成功的信息
+     */
 	@PostMapping("/adduser")
 	@ResponseStatus(HttpStatus.CREATED)
 	@Override
@@ -57,12 +72,18 @@ public class UserPersonControllerImpl implements UserPersonController {
 				userPersonService.addUserInfo(VoGetUserPersonMapper.INSTANCE.fromBoGetUserInfoReq(voGetUserInfoReq))));
 		return getUserInfoResp;
 	}
-
+	
+    /**
+     * 根据对应id删除用户信息
+     * @param id 需要删除的用户的id
+     */
 	@DeleteMapping("/deleuser/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@Override
 	public void deleUserInfo(@PathVariable(value = "id", required = true) String id) {
 		userPersonService.deleUserInfo(id);
 	}
+	
+
 
 }

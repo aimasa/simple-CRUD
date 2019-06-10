@@ -17,15 +17,15 @@ public interface BoGetUserPersonMapper {
     
     /**
      * 把service层处理好的数据转换成dao层数据
-     * @param boGetUserInfoReq 
-     * @return
+     * @param boGetUserInfoReq service层的数据格式
+     * @return 数据表的数据格式
      */
     UserInfo fromBoGetUserInfoResp(BoGetUserInfoReq boGetUserInfoReq);
     
     /**
      * 把dao层处理好的返回数据转换为service层数据
-     * @param userInfo
-     * @return
+     * @param userInfo 返回的数据表的数据格式
+     * @return BoGetUserInfoResp数据格式
      */
     BoGetUserInfoResp toBoGetUserInfoResp(UserInfo userInfo);
     
