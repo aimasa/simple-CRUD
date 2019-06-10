@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,7 +25,7 @@ public class UserPersonControllerImpl implements UserPersonController {
 	@GetMapping("/getuser/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
 	@Override
-	public GetUserInfoResp getUserInfo(@PathVariable(value = "id",required = true) String id) {
+	public GetUserInfoResp getUserInfo(@PathVariable(value = "id", required = true) String id) {
 		GetUserInfoResp getUserInfoResp = new GetUserInfoResp();
 		getUserInfoResp.setInfo("获取用户信息成功");
 		getUserInfoResp.setVoGetUserInfoResp(
@@ -49,20 +48,21 @@ public class UserPersonControllerImpl implements UserPersonController {
 	@ResponseStatus(HttpStatus.CREATED)
 	@Override
 	public GetUserInfoResp addUserInfo(@RequestBody VoGetUserInfoReq voGetUserInfoReq) {
-		if(voGetUserInfoReq == null) {
+		if (voGetUserInfoReq == null) {
 			return null;
 		}
 		GetUserInfoResp getUserInfoResp = new GetUserInfoResp();
 		getUserInfoResp.setInfo("添加信息成功");
-		getUserInfoResp.setVoGetUserInfoResp(VoGetUserPersonMapper.INSTANCE.toVoUserInfoResp(userPersonService
-				.addUserInfo(VoGetUserPersonMapper.INSTANCE.fromBoGetUserInfoReq(voGetUserInfoReq))));
+		getUserInfoResp.setVoGetUserInfoResp(VoGetUserPersonMapper.INSTANCE.toVoUserInfoResp(
+				userPersonService.addUserInfo(VoGetUserPersonMapper.INSTANCE.fromBoGetUserInfoReq(voGetUserInfoReq))));
 		return getUserInfoResp;
 	}
-    @DeleteMapping("/deleuser/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+
+	@DeleteMapping("/deleuser/{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@Override
-	public Boolean deleUserInfo(@PathVariable(value = "id", required = true) String id) {
-		return userPersonService.deleUserInfo(id);
+	public void deleUserInfo(@PathVariable(value = "id", required = true) String id) {
+		userPersonService.deleUserInfo(id);
 	}
 
 }

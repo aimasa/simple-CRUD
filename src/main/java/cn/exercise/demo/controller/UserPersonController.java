@@ -37,5 +37,5 @@ public interface UserPersonController {
      * @param id 需要删除的用户的id
      * @return false:该用户不存在，true:用户存在，删除成功
      */
-    public Boolean deleUserInfo(String id);
+    public void deleUserInfo(String id);
 }
