@@ -55,13 +55,14 @@ public class daoTest {
 		userInfo.setAge(11);
 		userInfo.setSex("女");
 		userInfo.setUserName("beatiful girl");
-		userPersonMapper.addUser(userInfo);
-		Assert.notNull(userInfo, "插入失败");
+		UserInfo tempUserInfo = userPersonMapper.addUser(userInfo);
+		Assert.notNull(tempUserInfo, "插入失败");
 	}
 
 	@Test
 	public void getUser() {
-		userPersonMapper.getUser(id);
+		UserInfo tempUserInfo = userPersonMapper.getUser(id);
+		Assert.notNull(tempUserInfo, "获取信息失败");
 	}
 
 	@Test
@@ -69,8 +70,8 @@ public class daoTest {
 		userInfo = new UserInfo();
 		userInfo.setId(id);
 		userInfo.setUserName("two days");
-		userPersonMapper.updateUserInfo(userInfo);
-
+		UserInfo tempUserInfo = userPersonMapper.updateUserInfo(userInfo);
+		Assert.notNull(tempUserInfo, "更新信息失败");
 	}
 	
 	@Test
