@@ -2,6 +2,8 @@ package cn.exercise.demo.controller;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import cn.exercise.demo.pojo.vo.GetUserInfoResp;
 import cn.exercise.demo.pojo.vo.req.VoGetUserInfoReq;
@@ -26,14 +28,14 @@ public interface UserPersonController {
      * @return 更新完成的用户信息
      */
     
-    public GetUserInfoResp updateUserInfo(@Valid @NotBlank VoGetUserInfoReq voGetUserInfoReq);
+    public GetUserInfoResp updateUserInfo(@Valid @NotNull VoGetUserInfoReq voGetUserInfoReq);
     
     /**
      * 添加用户的信息，返回添加成功的用户信息
      * @param voGetUserInfoReq 添加的用户信息
      * @return 添加成功的信息
      */
-    public GetUserInfoResp addUserInfo(@Valid @NotBlank VoGetUserInfoReq voGetUserInfoReq);
+    public GetUserInfoResp addUserInfo(@Valid @NotNull VoGetUserInfoReq voGetUserInfoReq);
     
     /**
      * 根据对应id删除用户信息

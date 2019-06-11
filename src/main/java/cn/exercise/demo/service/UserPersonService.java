@@ -2,6 +2,7 @@ package cn.exercise.demo.service;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import cn.exercise.demo.pojo.bo.req.BoGetUserInfoReq;
 import cn.exercise.demo.pojo.bo.resp.BoGetUserInfoResp;
@@ -32,12 +33,12 @@ public interface UserPersonService {
      * @param boGetUserInfoReq （id必填，否则不会更新信息）除了用户id外所有需要更新的信息
      * @return 更新完成的用户信息
      */
-    public BoGetUserInfoResp updateUserInfo(@Valid @NotBlank BoGetUserInfoReq boGetUserInfoReq);
+    public BoGetUserInfoResp updateUserInfo(@Valid @NotNull BoGetUserInfoReq boGetUserInfoReq);
     
     /**
      * 添加用户信息（id可以不填）
      * @param boGetUserInfoReq 添加的用户所有信息
      * @return 添加成功的用户信息
      */
-    public BoGetUserInfoResp addUserInfo(@Valid @NotBlank BoGetUserInfoReq boGetUserInfoReq);
+    public BoGetUserInfoResp addUserInfo(@Valid @NotNull BoGetUserInfoReq boGetUserInfoReq);
 }

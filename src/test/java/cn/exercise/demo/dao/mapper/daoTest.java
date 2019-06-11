@@ -2,6 +2,7 @@ package cn.exercise.demo.dao.mapper;
 
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
 
 
 import cn.exercise.demo.StudyDemoApplication;
@@ -56,13 +56,20 @@ public class daoTest {
 		userInfo.setSex("女");
 		userInfo.setUserName("beatiful girl");
 		UserInfo tempUserInfo = userPersonMapper.addUser(userInfo);
-		Assert.notNull(tempUserInfo, "插入失败");
+		Assert.assertNotNull("插入数据失败", tempUserInfo);
+		Assert.assertEquals("插入年龄错误",tempUserInfo.getAge() , userInfo.getAge());
+		Assert.assertEquals("插入性别错误",tempUserInfo.getSex() , userInfo.getSex());
+		Assert.assertEquals("插入昵称错误",tempUserInfo.getUserName() , userInfo.getUserName());
 	}
 
 	@Test
 	public void getUser() {
 		UserInfo tempUserInfo = userPersonMapper.getUser(id);
-		Assert.notNull(tempUserInfo, "获取信息失败");
+		Assert.assertNotNull("获取数据失败", tempUserInfo);
+		Assert.assertNotNull("获取id失败", tempUserInfo.getId());
+		Assert.assertNotNull("获取sex失败", tempUserInfo.getSex());
+		Assert.assertNotNull("获取username失败", tempUserInfo.getUserName());
+		Assert.assertNotNull("获取年龄失败", tempUserInfo.getAge());
 	}
 
 	@Test
@@ -71,7 +78,9 @@ public class daoTest {
 		userInfo.setId(id);
 		userInfo.setUserName("two days");
 		UserInfo tempUserInfo = userPersonMapper.updateUserInfo(userInfo);
-		Assert.notNull(tempUserInfo, "更新信息失败");
+		Assert.assertNotNull("更新数据失败", tempUserInfo);
+		Assert.assertEquals("插入id错误",tempUserInfo.getId() , userInfo.getId());
+		Assert.assertEquals("插入昵称错误",tempUserInfo.getUserName() , userInfo.getUserName());
 	}
 	
 	@Test
