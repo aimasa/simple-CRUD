@@ -32,6 +32,9 @@ public class UserPersonControllerImpl implements UserPersonController {
 	@Override
 	public GetUserInfoResp getUserInfo(@PathVariable(value = "id", required = true) String id) {
 		GetUserInfoResp getUserInfoResp = new GetUserInfoResp();
+		if(!id.equals(1)) {
+			throw new IllegalArgumentException("ERROR");
+		}
 		getUserInfoResp.setInfo("获取用户信息成功");
 		getUserInfoResp.setVoGetUserInfoResp(
 				VoGetUserPersonMapper.INSTANCE.toVoUserInfoResp(userPersonService.GetUserInfo(id)));
@@ -63,12 +66,14 @@ public class UserPersonControllerImpl implements UserPersonController {
 	@ResponseStatus(HttpStatus.CREATED)
 	@Override
 	public GetUserInfoResp addUserInfo(@RequestBody VoGetUserInfoReq voGetUserInfoReq) {
-		if (voGetUserInfoReq == null) {
-			return null;
-		}
 		GetUserInfoResp getUserInfoResp = new GetUserInfoResp();
+		if(!voGetUserInfoReq.getId().equals(1)) {
+			throw new IllegalArgumentException("ERROR");
+		}
+		
 		getUserInfoResp.setInfo("添加信息成功");
-		getUserInfoResp.setVoGetUserInfoResp(VoGetUserPersonMapper.INSTANCE.toVoUserInfoResp(
+		getUserInfoResp.setVoGetUserInfoResp(
+				VoGetUserPersonMapper.INSTANCE.toVoUserInfoResp(
 				userPersonService.addUserInfo(VoGetUserPersonMapper.INSTANCE.fromBoGetUserInfoReq(voGetUserInfoReq))));
 		return getUserInfoResp;
 	}
@@ -83,7 +88,6 @@ public class UserPersonControllerImpl implements UserPersonController {
 	public void deleUserInfo(@PathVariable(value = "id", required = true) String id) {
 		userPersonService.deleUserInfo(id);
 	}
-	
 
 
 }

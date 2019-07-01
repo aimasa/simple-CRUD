@@ -6,7 +6,6 @@ import org.jooq.Record;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
-import org.springframework.validation.annotation.Validated;
 
 import cn.exercise.demo.dao.mapper.UserPersonMapper;
 import cn.exercise.demo.pojo.po.tables.pojos.UserInfo;
@@ -14,8 +13,6 @@ import cn.exercise.demo.pojo.po.tables.records.UserInfoRecord;
 
 import static cn.exercise.demo.pojo.po.tables.UserInfo.USER_INFO;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
 @Repository
 public class UserPersonMapperImpl implements UserPersonMapper {
@@ -35,6 +32,10 @@ public class UserPersonMapperImpl implements UserPersonMapper {
 //			return null;
 //		}
 
+		Assert.notNull(userInfo.getSex(),"性别不能为空");
+		Assert.notNull(userInfo.getUserName(),"姓名不能为空");
+		Assert.notNull(userInfo.getAge(),"年龄不能为空");
+		userInfo.setId(null);
 		UserInfoRecord userInfoRecord = dsl.newRecord(USER_INFO, userInfo);
 //		userInfoRecord.from(userInfo);
 		int result = userInfoRecord.store();
@@ -53,33 +54,12 @@ public class UserPersonMapperImpl implements UserPersonMapper {
 	@Override
 	public UserInfo updateUserInfo(UserInfo userInfo) {
 		Assert.notNull(userInfo, "没有需要更新的信息");
-		if (userInfo.getId() == null) {
-			return null;
-		}
+		Assert.notNull(userInfo.getId(), "没有给出id");
 		UserInfoRecord userInfoRecord = formatUpdateSelective(dsl.newRecord(USER_INFO, userInfo));
 		int numResult = dsl.update(USER_INFO).set(userInfoRecord).where(USER_INFO.ID.eq(userInfo.getId())).execute();
-//		UserInfoRecord userInfoRecord = dsl.fetchOne(USER_INFO, USER_INFO.ID.eq(userInfo.getId()));
-//		if (userInfoRecord == null) {
-//			return null;
-//		}
-//		UpdateQuery<UserInfoRecord> updateQuery = dsl.updateQuery(USER_INFO);
-//		if (userInfo.getAge() != null) {
-//			updateQuery.addValue(DSL.field("age"), userInfo.getAge());
-//		}
-//		if (userInfo.getSex() != null) {
-//			updateQuery.addValue(DSL.field("sex"), userInfo.getSex());
-//		}
-//		if (userInfo.getUserName() != null) {
-//			updateQuery.addValue(DSL.field("user_name"), userInfo.getUserName());
-//		}
-//		Condition condition = DSL.field("id").eq(userInfo.getId());
-//		updateQuery.addConditions(condition);
-//		int result = updateQuery.execute();
-//		System.out.println(result);
 		if(numResult == 0) {
 			return null;
 		}
-
 		return getUser(userInfo.getId());
 	}
 

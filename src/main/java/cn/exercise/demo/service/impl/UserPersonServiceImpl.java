@@ -47,7 +47,7 @@ public class UserPersonServiceImpl implements UserPersonService {
 	public Boolean deleUserInfo(String id) {
 		Assert.notNull(id, "id值为空");
 		Boolean isSuccess = userPersonMapper.deleUserInfo(Integer.valueOf(id));
-		Assert.isTrue(!(isSuccess), "数据库中不存在该用户");
+		Assert.isTrue(isSuccess, "数据库中不存在该用户");
 		return isSuccess;
 	}
 
