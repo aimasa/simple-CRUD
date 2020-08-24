@@ -7,19 +7,13 @@ import javax.validation.constraints.NotBlank;
 import cn.aimasa.hetongfenglei.controller.FileController;
 import cn.aimasa.hetongfenglei.pojo.bo.req.BoFileReq;
 import cn.aimasa.hetongfenglei.pojo.bo.resp.BoFileResp;
-import cn.aimasa.hetongfenglei.pojo.bo.resp.BoFilesResp;
 import cn.aimasa.hetongfenglei.pojo.dto.VoFileMapper;
-import cn.aimasa.hetongfenglei.pojo.po.tables.pojos.File;
 import cn.aimasa.hetongfenglei.pojo.vo.req.VoFileReq;
 import cn.aimasa.hetongfenglei.pojo.vo.resp.VoFileResp;
-import cn.aimasa.hetongfenglei.pojo.vo.resp.VoFilesResp;
-import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import cn.aimasa.hetongfenglei.pojo.vo.GetUserInfoResp;
-import cn.aimasa.hetongfenglei.pojo.vo.req.VoGetUserInfoReq;
 import cn.aimasa.hetongfenglei.service.FileService;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -46,8 +40,6 @@ public class FileControllerImpl implements FileController {
 	@ResponseStatus(HttpStatus.OK)
 	@Override
 	public VoFileResp getFile(@PathVariable(value = "id", required = true) String id, HttpServletResponse response) throws UnsupportedEncodingException {
-		GetUserInfoResp getUserInfoResp = new GetUserInfoResp();
-		getUserInfoResp.setInfo("获取用户信息成功");
 		BoFileResp boFileResp = fileService.GetFile(id);
 		return VoFileMapper.INSTANCE.fromBoFileResp(boFileResp);
 	}
@@ -65,9 +57,7 @@ public class FileControllerImpl implements FileController {
 	@Override
 	public void gainContact(@PathVariable(value = "userid", required = true) String id, @RequestParam(value = "filter", defaultValue = "") String filter, HttpServletResponse response) throws IOException {
 
-		GetUserInfoResp getUserInfoResp = new GetUserInfoResp();
 		String zipName = "合同.zip";
-		getUserInfoResp.setInfo("获取用户信息成功");
 //		response.setContentType("multipart/form-data");
 		response.setHeader("Content-Disposition", "attachment;fileName=" + URLEncoder.encode(zipName, "UTF-8"));
 		OutputStream outputStream = response.getOutputStream();
@@ -104,8 +94,6 @@ public class FileControllerImpl implements FileController {
 	@ResponseStatus(HttpStatus.CREATED)
 	@Override
 	public VoFileResp addFile(@PathVariable(value = "id", required = true) String id, @RequestBody MultipartFile file) throws IOException {
-		GetUserInfoResp getUserInfoResp = new GetUserInfoResp();
-		getUserInfoResp.setInfo("添加信息成功");
 		BoFileReq boFileReq = new BoFileReq();
 		boFileReq.setFilename(file.getOriginalFilename());
 		boFileReq.setContent(file);

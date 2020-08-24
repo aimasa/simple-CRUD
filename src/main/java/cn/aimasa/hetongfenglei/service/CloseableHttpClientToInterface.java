@@ -1,27 +1,15 @@
-package cn.aimasa.hetongfenglei.service.impl;
+package cn.aimasa.hetongfenglei.service;
 
 import cn.aimasa.hetongfenglei.pojo.bo.resp.ContactClassify;
-import cn.aimasa.hetongfenglei.service.CloseableHttpClientToInterface;
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import okhttp3.*;
-import org.apache.commons.io.IOUtils;
-
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.*;
-import java.nio.file.Files;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
-
-public class CloseableHttpClientToInterfaceImp implements CloseableHttpClientToInterface {
-
-    private static String tokenString = "";
-    private static String AUTH_TOKEN_EXPIRED = "AUTH_TOKEN_EXPIRED";
+public interface CloseableHttpClientToInterface {
 
     /**
      * 以get方式调用第三方接口
@@ -29,13 +17,7 @@ public class CloseableHttpClientToInterfaceImp implements CloseableHttpClientToI
      * @param url
      * @return
      */
-    public String doGet(String url) {
-
-        Request request = new Request.Builder().url(url).build();
-        return null;
-
-
-    }
+    public String doGet(String url);
 
     /**
      * 以post方式调用第三方接口
@@ -44,30 +26,7 @@ public class CloseableHttpClientToInterfaceImp implements CloseableHttpClientToI
      * @param content
      * @return
      */
-    public List<String> doPost(String url, MultipartFile content) throws IOException {
-        OkHttpClient client = new OkHttpClient().newBuilder()
-                .build();
-        MediaType mediaType = MediaType.parse("text/plain");
-
-        List<Byte[]> contents = new ArrayList<>();
-
-        RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                .addFormDataPart("path", content.getOriginalFilename(),
-                        RequestBody.create(content.getBytes(), MediaType.parse("application/octet-stream")))
-                .build();
-        Request request = new Request.Builder()
-                .url(url)
-                .method("POST", body)
-                .build();
-        Response response = client.newCall(request).execute();
-        if (response.code() == 200) {
-            String json = response.body().string();
-            ContactClassify cc = JSONObject.parseObject(json, ContactClassify.class);
-            return cc.getAccuracy();
-        }
-        return null;
-    }
-
+    public List<String> doPost(String url, MultipartFile content) throws IOException;
 //
 //    /**
 //     * 测试
