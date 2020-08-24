@@ -1,82 +1,15 @@
-# 简单的CRUD项目
+# 简单的合同分类系统
 
-- spring boot + jooq完成的简单的增删查改。
+使用的模型是CNN训练出来的合同分类模型
 
-# 相关方法参数
+目前只能对两种类型进行分类：租赁、买卖
 
-## 增
+系统的大概架构如下：
 
-postman 输入地址：
+![](./entire-system.png)
 
-    localhost:8080/adduser
+系统写的比较急，所以很多细节没有考虑，可优化点很多。
 
-输入参数：
+接口文档就不给了，因为分类模型的接口没有给出来，所以下载也用不了。
 
-    {
-	    "userName":"nuonuo",
-	    "age":23,
-	    "sex":"男"
-    }
-
-输出参数：
-
-    {
-        "info": "添加信息成功",
-        "voGetUserInfoResp": {
-            "id": 50,
-            "userName": "nuonuo",
-            "sex": "男",
-            "age": 23
-        }
-    }
-
-# 删
-postman 输入地址：
-
-    localhost:8080/deleuser/50
-
-无返回值
-
-# 查
-
-postman  输入地址：
-
-    localhost:8080/getuser/47
-
-返回值：
-
-    {
-        "info": "获取用户信息成功",
-        "voGetUserInfoResp": {
-            "id": 47,
-            "userName": "nani",
-            "sex": "女",
-            "age": 12
-        }
-    }
-
-# 改
-
-postman  输入地址
-
-    localhost:8080/updateuser
-
-输入参数：
-
-    {
-	    "id":47,
-	    "userName":"丫丫",
-	    "sex":"女"
-    }
-
-返回值：
-
-    {
-        "info": "更新信息成功",
-        "voGetUserInfoResp": {
-            "id": 47,
-            "userName": "丫丫",
-            "sex": "女",
-            "age": 12
-        }
-    }  
+等之后实验进展顺利的话，一个合同预判demo就能出来了，到时候再来慢慢优化系统好了。
