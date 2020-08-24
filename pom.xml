@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.8.RELEASE</version>
+		<version>2.3.0.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.exercise</groupId>
@@ -26,11 +26,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-	<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>fastjson</artifactId>
-			<version>1.2.15</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -62,11 +57,54 @@
     <groupId>org.mockito</groupId>
     <artifactId>mockito-core</artifactId>
     </dependency>
-		
+		<!--HttpClient-->
+		<!--CloseableHttpClient-->
+		<dependency>
+			<groupId>com.squareup.okhttp3</groupId>
+			<artifactId>okhttp</artifactId>
+			<version>4.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.28</version>
+		</dependency>
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
 			<version>${org.mapstruct.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+			<version>6.0.8</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>2.0.1.Final</version>
+		</dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>5.2.7.RELEASE</version>
+        </dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+			<version>4.4.13</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.3.3</version>
 		</dependency>
 	</dependencies>
 
@@ -95,23 +133,23 @@
 				</dependencies>
 				<configuration>
 					<jdbc>
-						<driver>com.mysql.cj.jdbc.Driver</driver>
-						<url>jdbc:mysql://localhost:3306/exercise_test?serverTimezone=UTC</url>
+						<driver>com.mysql.jdbc.Driver</driver>
+						<url>jdbc:mysql://120.79.142.61:3306/classfiy_contact?serverTimezone=UTC</url>
 						<user>root</user>
-						<password></password>
+						<password>123456</password>
 					</jdbc>
 					<generator>
 						<database>
-							<name>org.jooq.util.mysql.MySQLDatabase</name>
+							<name>org.jooq.meta.mysql.MySQLDatabase</name>
 							<includes>.*</includes>
 							<excludes></excludes>
-							<inputSchema>exercise_test</inputSchema>
+							<inputSchema>classfiy_contact</inputSchema>
 							
 						</database>
 						<target>
 							<!-- The destination package of your generated classes (within the 
 								destination directory) -->
-							<packageName>cn.exercise.demo.pojo.po</packageName>
+							<packageName>cn.aimasa.hetongfenglei.pojo.po</packageName>
 							<!-- The destination directory of your generated classes -->
 							<directory>/src/main/java</directory>
 						</target>
@@ -122,6 +160,21 @@
 						</generate>
 					</generator>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>6.4.4</version>
+				<configuration>
+					<driver>com.mysql.jdbc.Driver</driver>
+					<url>jdbc:mysql://120.79.142.61:3306/classfiy_contact</url>
+					<user>root</user>
+					<password>123456</password>
+					<connectRetries>10</connectRetries>
+					<baselineOnMigrate>true</baselineOnMigrate>
+					<table></table>
+				</configuration>
+
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
