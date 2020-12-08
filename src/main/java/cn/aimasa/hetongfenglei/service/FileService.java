@@ -6,10 +6,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import cn.aimasa.hetongfenglei.pojo.bo.req.BoFileReq;
-import cn.aimasa.hetongfenglei.pojo.bo.req.BoGetUserInfoReq;
 import cn.aimasa.hetongfenglei.pojo.bo.resp.BoFileResp;
 import cn.aimasa.hetongfenglei.pojo.bo.resp.BoFilesResp;
-import cn.aimasa.hetongfenglei.pojo.bo.resp.BoGetUserInfoResp;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
